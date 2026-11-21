@@ -1,0 +1,95 @@
+/* MildChoco 앱 페이지 공통 스타일. 색은 앱 테마(core Theme.kt·Brand.kt)와 같다: 라이트는 크림 바탕에 초코 글자, 다크는 #16161B 바탕 */
+:root {
+  --bg: #FFF4E3;
+  --panel: #FFFFFF;
+  --ink: #3B2416;
+  --sub: #5C4A41;
+  --muted: #6B6B78;
+  --line: #F3E7D3;
+  --chip: #FBE8CC;
+  --accent: #F6A13A;
+  --on-accent: #3B2416;
+  --link: #A84E08;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16161B;
+    --panel: #24242C;
+    --ink: #F5F0EB;
+    --sub: #C9C9D3;
+    --muted: #A3A3B0;
+    --line: #2E2E38;
+    --chip: #2A2A33;
+    --accent: #FFB75C;
+    --on-accent: #3B2416;
+    --link: #FFC27A;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.7 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo",
+    "Malgun Gothic", "Noto Sans JP", "Hiragino Sans", "Yu Gothic UI", sans-serif;
+}
+
+/* 일본어는 일본어 글꼴을 먼저 고른다 */
+:lang(ja) { font-family: system-ui, -apple-system, "Yu Gothic UI", "Hiragino Sans", "Noto Sans JP", "Meiryo", sans-serif; }
+
+/* 한글이 낱말 중간에서 줄바꿈되지 않게 */
+:lang(ko) { word-break: keep-all; overflow-wrap: break-word; }
+
+.wrap { max-width: 720px; margin: 0 auto; padding: 28px 16px 56px; }
+
+.brand { display: flex; align-items: center; gap: 10px; margin: 0 0 32px; }
+.brand a { display: inline-flex; align-items: center; gap: 10px; color: inherit; text-decoration: none; border-radius: 12px; }
+.brand svg { width: 36px; height: 36px; flex: none; }
+.brand .name { font-weight: 800; font-size: 19px; letter-spacing: -0.2px; }
+
+h1 { font-size: 26px; line-height: 1.3; letter-spacing: -0.5px; margin: 0 0 6px; }
+.lede { color: var(--sub); margin: 0 0 22px; }
+
+/* 언어 고르기: 앱의 필터 칩과 같은 모양(높이 44, 모서리 22) */
+.langs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+.langs a {
+  display: inline-flex; align-items: center; height: 44px; padding: 0 18px;
+  border-radius: 22px; background: var(--chip); color: var(--ink);
+  font-weight: 700; font-size: 14px; text-decoration: none;
+}
+.langs a:hover { background: var(--accent); color: var(--on-accent); }
+
+/* 방침 한 언어 = 흰 판 하나(앱 카드와 같은 모서리 22) */
+.policy {
+  background: var(--panel); border-radius: 22px; padding: 24px 22px 14px;
+  margin: 0 0 20px; scroll-margin-top: 16px;
+}
+.policy h2 { font-size: 20px; line-height: 1.35; letter-spacing: -0.3px; margin: 0 0 2px; }
+.policy .meta { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
+.policy h3 { font-size: 17px; line-height: 1.4; margin: 26px 0 6px; padding-top: 18px; border-top: 1px solid var(--line); }
+.policy p { margin: 0 0 12px; }
+.policy ul { margin: 0 0 12px; padding-left: 20px; }
+.policy li { margin: 0 0 4px; }
+
+a { color: var(--link); text-underline-offset: 3px; }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* 첫 페이지의 앱 목록 */
+.apps { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.apps li { background: var(--panel); border-radius: 22px; padding: 18px 20px; display: flex; align-items: center; gap: 16px; }
+.apps img { width: 56px; height: 56px; border-radius: 14px; flex: none; }
+.apps .title { font-weight: 700; font-size: 17px; line-height: 1.35; margin: 0; }
+.apps .desc { color: var(--sub); font-size: 14px; margin: 2px 0 6px; }
+.apps .links { font-size: 14px; margin: 0; }
+
+footer { color: var(--muted); font-size: 13px; margin-top: 30px; }
+
+@media (max-width: 420px) {
+  .policy { padding: 20px 18px 10px; }
+  h1 { font-size: 23px; }
+}
